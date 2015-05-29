@@ -100,10 +100,16 @@ ColorEditor::ColorEditor(ColorPropertyInterface * property, QWidget * parent)
     m_propertyChangedConnection = m_property->valueChanged.connect(
         [this]()
         {
+            m_button->blockSignals(true);
+            m_lineEdit->blockSignals(true);
+
             Color color = m_property->toColor();
             QColor qcolor = toQColor(color);
             m_button->setColor(qcolor);
             m_lineEdit->setText(QString::fromStdString(color.toString(m_alpha)));
+
+            m_button->blockSignals(false);
+            m_lineEdit->blockSignals(false);
         });
 }
 

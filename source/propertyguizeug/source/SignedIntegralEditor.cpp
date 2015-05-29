@@ -72,7 +72,9 @@ SignedIntegralEditor::SignedIntegralEditor(
     m_propertyChangedConnection = m_property->valueChanged.connect(
         [this, spinBox]()
         {
+            spinBox->blockSignals(true);
             spinBox->setValue(m_property->toLongLong());
+            spinBox->blockSignals(false);
         });
 }
 

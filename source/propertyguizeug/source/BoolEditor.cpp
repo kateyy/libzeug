@@ -49,7 +49,9 @@ BoolEditor::BoolEditor(Property<bool> * property, QWidget * parent)
     m_propertyChangedConnection = m_property->valueChanged.connect(
         [this, checkBox](bool newValue)
         {
+            checkBox->blockSignals(true);
             checkBox->setCheckState(newValue ? Qt::CheckState::Checked : Qt::CheckState::Unchecked);
+            checkBox->blockSignals(false);
         });
 }
 

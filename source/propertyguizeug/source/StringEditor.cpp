@@ -46,7 +46,9 @@ QWidget * StringEditor::createComboBox()
     m_propertyChangedConnection = m_property->valueChanged.connect(
         [this, comboBox]()
         {
+            comboBox->blockSignals(true);
             comboBox->setCurrentText(QString::fromStdString(m_property->toString()));
+            comboBox->blockSignals(false);
         });
 
     return comboBox;
@@ -77,7 +79,9 @@ QWidget * StringEditor::createLineEdit()
     m_propertyChangedConnection = m_property->valueChanged.connect(
         [this, lineEdit]()
         {
+            lineEdit->blockSignals(true);
             lineEdit->setText(QString::fromStdString(m_property->toString()));
+            lineEdit->blockSignals(false);
         });
 
     return lineEdit;

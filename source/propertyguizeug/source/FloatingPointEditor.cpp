@@ -96,7 +96,9 @@ FloatingPointEditor::FloatingPointEditor(
     m_propertyChangedConnection = m_property->valueChanged.connect(
         [this, spinBox]()
         {
+            spinBox->blockSignals(true);
             spinBox->setValue(m_property->toDouble());
+            spinBox->blockSignals(false);
         });
 }
 

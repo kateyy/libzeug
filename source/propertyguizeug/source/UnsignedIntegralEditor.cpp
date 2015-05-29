@@ -71,7 +71,9 @@ UnsignedIntegralEditor::UnsignedIntegralEditor(
     m_propertyChangedConnection = m_property->valueChanged.connect(
         [this, spinBox]()
         {
+            spinBox->blockSignals(true);
             spinBox->setValue(m_property->toULongLong());
+            spinBox->blockSignals(false);
         });
 }
 

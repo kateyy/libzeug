@@ -24,7 +24,9 @@ ValueEditor::ValueEditor(AbstractValueProperty * property, QWidget * parent)
     m_propertyChangedConnection = m_property->valueChanged.connect(
         [this]()
         {
+            m_lineEdit->blockSignals(true);
             m_lineEdit->setText(QString::fromStdString(m_property->toString()));
+            m_lineEdit->blockSignals(false);
         });
 }
 
