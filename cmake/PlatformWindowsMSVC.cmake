@@ -46,6 +46,8 @@ set(WIN32_COMPILE_FLAGS
 
     # /MD           # -> runtime library: multithreaded dll
     # /MDd          # -> Runtime Library: Multithreaded Debug DLL
+	
+      /bigobj
 )
 
 # http://support.microsoft.com/kb/154419
@@ -67,7 +69,7 @@ set(DEFAULT_COMPILE_FLAGS
     # /RTCc   
       /Od           # -> Optimization: none
       /GS-          # -> buffer security check: no 
-      /GL           # -> whole program optimization: enable link-time code generation
+      # /GL           # -> whole program optimization: enable link-time code generation
       /GF           # -> enable string pooling
       /GR           # -> runtime type information
     # /GS           # -> buffer security check
@@ -81,9 +83,10 @@ set(DEFAULT_COMPILE_FLAGS
     # /Ot           # -> favor size or speed: favor fast code
     # /Oy           # -> omit frame pointers: yes
       /GS-          # -> buffer security check: no 
-      /GL           # -> whole program optimization: enable link-time code generation
+      # /GL           # -> whole program optimization: enable link-time code generation
       /GF           # -> enable string pooling
       /GR           # -> runtime type information
+      /Zo
     >
 )
 
@@ -103,7 +106,7 @@ set(DEFAULT_LINKER_FLAGS_DEBUG
 )
 
 set(DEFAULT_LINKER_FLAGS_RELEASE
-    "${WIN32_LINKER_FLAGS} /OPT:REF /LTCG /OPT:ICF /DELAY:UNLOAD"
+    "${WIN32_LINKER_FLAGS} /OPT:REF /DEBUG /OPT:ICF /DELAY:UNLOAD"
     # OPT:REF      -> references: eliminate unreferenced data
     # OPT:ICF      -> enable comdat folding: remove redundant comdats
     # LTCG         -> link time code generation: use link time code generation
