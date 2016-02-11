@@ -65,33 +65,34 @@ set(WIN32_COMPILE_FLAGS
 set(DEFAULT_COMPILE_FLAGS
     ${WIN32_COMPILE_FLAGS}
     $<$<CONFIG:Debug>:   
-    # /RTC1         # -> Runtime error checks
+      /MDd
+      /RTC1         # -> Runtime error checks
     # /RTCc   
       /Od           # -> Optimization: none
-      /GS-          # -> buffer security check: no 
+      # /GS-          # -> buffer security check: no 
       # /GL           # -> whole program optimization: enable link-time code generation
-      /GF           # -> enable string pooling
+      # /GF           # -> enable string pooling
       /GR           # -> runtime type information
     # /GS           # -> buffer security check
     # /GF-          # -> enable string pooling
       /Zi           # -> debug information format: program database
     >
     $<$<CONFIG:Release>: 
-      /Ox           # -> optimization: full optimization 
-    # /Ob2          # -> inline function expansion: any suitable
+      /MD /O2
+      # /Ox           # -> optimization: full optimization 
+      # /Ob2          # -> inline function expansion: any suitable
     # /Oi           # -> enable intrinsic functions: yes
     # /Ot           # -> favor size or speed: favor fast code
     # /Oy           # -> omit frame pointers: yes
-      /GS-          # -> buffer security check: no 
+      # /GS-          # -> buffer security check: no 
       # /GL           # -> whole program optimization: enable link-time code generation
-      /GF           # -> enable string pooling
+      # /GF           # -> enable string pooling
       /GR           # -> runtime type information
-      /Zo
     >
 )
 
 set(WIN32_LINKER_FLAGS
-    "/NOLOGO /INCREMENTAL:NO /NXCOMPAT /DYNAMICBASE:NO"
+    "/NOLOGO /NXCOMPAT /DYNAMICBASE"
     # NOLOGO                                            -> suppress logo
     # INCREMENTAL:NO                                    -> enable incremental linking: no
     # MANIFEST                                          -> generate manifest: yes
@@ -106,7 +107,7 @@ set(DEFAULT_LINKER_FLAGS_DEBUG
 )
 
 set(DEFAULT_LINKER_FLAGS_RELEASE
-    "${WIN32_LINKER_FLAGS} /OPT:REF /DEBUG /OPT:ICF /DELAY:UNLOAD"
+    "${WIN32_LINKER_FLAGS} /OPT:REF /OPT:ICF"
     # OPT:REF      -> references: eliminate unreferenced data
     # OPT:ICF      -> enable comdat folding: remove redundant comdats
     # LTCG         -> link time code generation: use link time code generation
