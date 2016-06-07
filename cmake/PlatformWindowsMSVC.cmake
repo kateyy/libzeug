@@ -18,6 +18,7 @@ set(DEFAULT_COMPILE_DEFS_RELEASE
     NDEBUG                      # Release build
 )
 
+option(OPTION_RELEASE_LTCG "Enable whole program optimization / link time code generation in Release builds" OFF)
 
 set(WIN32_COMPILE_FLAGS
 
@@ -91,6 +92,10 @@ set(DEFAULT_COMPILE_FLAGS
     >
 )
 
+if (OPTION_RELEASE_LTCG)
+    list(APPEND DEFAULT_COMPILE_FLAGS $<$<CONFIG:Release>: /GL > )
+endif()
+
 set(WIN32_LINKER_FLAGS
     "/NOLOGO /NXCOMPAT /DYNAMICBASE"
     # NOLOGO                                            -> suppress logo
@@ -114,6 +119,9 @@ set(DEFAULT_LINKER_FLAGS_RELEASE
     # DELAY:UNLOAD -> delay loaded dll: support unload
 )
 
+if(OPTION_RELEASE_LTCG)
+    set(DEFAULT_LINKER_FLAGS_RELEASE "${DEFAULT_LINKER_FLAGS_RELEASE} /LTCG")
+endif()
 
 # Add platform specific libraries for linking
 set(EXTRA_LIBS "")
