@@ -79,7 +79,7 @@ macro (find LIB_NAME HEADER)
         NAMES ${LIBNAME}d
         PATHS ${HINT_PATHS}
         DOC "The ${LIB_NAME} debug library")
-    
+
     if(${LIB_NAME_UPPER}_LIBRARY_RELEASE AND ${LIB_NAME_UPPER}_LIBRARY_DEBUG)
         set(${LIB_NAME_UPPER}_LIBRARIES "optimized" ${${LIB_NAME_UPPER}_LIBRARY_RELEASE} "debug" ${${LIB_NAME_UPPER}_LIBRARY_DEBUG})
     elseif(${LIB_NAME_UPPER}_LIBRARY_RELEASE)
@@ -137,7 +137,7 @@ endif()
 file(TO_CMAKE_PATH "$ENV{PROGRAMFILES}" ENVPROGRAMFILES)
 file(TO_CMAKE_PATH "$ENV{LIBZEUG_DIR}"  ENVLIBZEUG_DIR)
 
-set(LIB_PATHS   
+set(LIB_PATHS
     ${LIBZEUG_DIR}/build
     ${LIBZEUG_DIR}/build/Release
     ${LIBZEUG_DIR}/build/Debug
@@ -156,14 +156,14 @@ set(LIB_PATHS
     /opt/local/lib64
 )
 
-find(io          iozeug/iozeug_api.h                   ${LIB_PATHS})
+# find(io          iozeug/iozeug_api.h                   ${LIB_PATHS})
 find(logging     loggingzeug/loggingzeug_api.h         ${LIB_PATHS})
 find(propertygui propertyguizeug/propertyguizeug_api.h ${LIB_PATHS})
 find(reflection  reflectionzeug/reflectionzeug_api.h   ${LIB_PATHS})
-find(script      scriptzeug/scriptzeug_api.h           ${LIB_PATHS})
+# find(script      scriptzeug/scriptzeug_api.h           ${LIB_PATHS})
 find(signal      signalzeug/signalzeug_api.h           ${LIB_PATHS})
-find(threading   threadingzeug/threadingzeug_api.h     ${LIB_PATHS})
-find(widget      widgetzeug/widgetzeug_api.h           ${LIB_PATHS})
+# find(threading   threadingzeug/threadingzeug_api.h     ${LIB_PATHS})
+# find(widget      widgetzeug/widgetzeug_api.h           ${LIB_PATHS})
 
 # DEBUG
 #message("LIBZEUG_INCLUDES  = ${LIBZEUG_INCLUDES}")

@@ -28,11 +28,11 @@ project(${META_PROJECT_NAME} C CXX)
 
 option(OPTION_PORTABLE_INSTALL "Install into a self-contained directory" OFF)
 option(OPTION_BUILD_STATIC     "Build static libraries" OFF)
-option(OPTION_BUILD_TESTS      "Build tests (if gmock and gtest are found)" ON)
+option(OPTION_BUILD_TESTS      "Build tests (if gmock and gtest are found)" OFF)
 option(OPTION_BUILD_EXAMPLES   "Build examples" OFF)
 
 option(OPTION_BUILD_WITH_STD_REGEX "Build with std lib regex classes" ON)
-option(OPTION_USE_OPENMP           "Use OpenMP in threadingzeug::parallel_for" ON)
+option(OPTION_USE_OPENMP           "Use OpenMP in threadingzeug::parallel_for" OFF)
 
 
 if(OPTION_BUILD_STATIC)
@@ -74,7 +74,7 @@ endif()
 # Setup platform specifics (compile flags, etc., ...)
 
 # This policy was introduced in 3.0.0 and does not allow for COMPILER_DEFINITIONS_<Config>,
-# anymore, but instead requires generator expressions like $<CONFIG:Debug> ... 
+# anymore, but instead requires generator expressions like $<CONFIG:Debug> ...
 # For now the current compile-flag, -definitions, and linker-flags setup shall remain as is.
 if(POLICY CMP0043)
     cmake_policy(SET CMP0043 OLD)
@@ -100,7 +100,7 @@ endif()
 
 # Installation paths
 set(project ${META_PROJECT_NAME})
-if(WIN32) 
+if(WIN32)
 
     # "%PROGRAMFILES%/<project>/"
 
@@ -116,10 +116,10 @@ if(WIN32)
     set(INSTALL_ICONS     ".") # not available in windows
     set(INSTALL_INIT      ".") # not available in windows
 
-else() 
+else()
 
     # "/user/[local]/"
-    
+
     set(INSTALL_ROOT      "share/${project}")
     set(INSTALL_EXAMPLES  "share/${project}/examples")
     set(INSTALL_DATA      "share/${project}/examples")
@@ -151,7 +151,7 @@ else()
         if (APPLE)
             set(CMAKE_INSTALL_RPATH "@executable_path/${INSTALL_LIB}")
         else()
-            set(CMAKE_INSTALL_RPATH "$ORIGIN/${INSTALL_LIB}")       
+            set(CMAKE_INSTALL_RPATH "$ORIGIN/${INSTALL_LIB}")
         endif()
     else()
         if (APPLE)
@@ -159,7 +159,7 @@ else()
             set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)                       # Add rpaths of depending libraries
         endif()
     endif()
-    
+
 endif()
 
 
