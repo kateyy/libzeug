@@ -27,7 +27,7 @@ set(DEFAULT_COMPILE_FLAGS
     -frtti
     -fexceptions
 
-      -std=c++11
+      -std=c++14
     # -pthread      # -> use pthread library
       # -pipe         # -> use pipes
       -Wall         # -> 
@@ -49,6 +49,7 @@ set(DEFAULT_COMPILE_FLAGS
       -Wno-deprecated-declarations
       -Wno-pointer-bool-conversion
       -Wno-missing-braces
+      -Wno-invalid-constexpr # for Qt, QRgba64 fromRgba64(quint64 c)
 
     # -Werror=return-type -> missing returns in functions and methods are handled as errors which stops the compilation
     # -Wshadow      # -> e.g. when a parameter is named like a member, too many warnings, disabled for now
