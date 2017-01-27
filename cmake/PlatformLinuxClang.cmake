@@ -3,9 +3,9 @@ message(STATUS "Configuring for platform Linux/Clang.")
 
 # Enable C++11 support
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++")
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++")
 
-include_directories("/usr/include/c++/v1/")
+# include_directories("/usr/include/c++/v1/")
 
 set(LINUX_COMPILE_DEFS
     LINUX                     # Linux system
@@ -21,19 +21,20 @@ set(DEFAULT_COMPILE_DEFS_RELEASE
     NDEBUG                    # Release build
 )
 
-set(LINUX_COMPILE_FLAGS 
-      
+set(LINUX_COMPILE_FLAGS
+      -std=c++11
+
       -fexceptions  # -> enable exceptions
       -pthread      # -> use pthread library
     # -no-rtti      # -> disable c++ rtti
       -pipe         # -> use pipes
-      -Wall         # -> 
-      -Wextra       # -> 
+      -Wall         # ->
+      -Wextra       # ->
       -Werror       # ->
       -fPIC         # -> use position independent code
-      
+
       -Wno-unknown-warning-option
-      -Wno-reinterpret-base-class 
+      -Wno-reinterpret-base-class
       -Wno-overloaded-virtual
 
       -Wreturn-type
@@ -47,9 +48,9 @@ set(LINUX_COMPILE_FLAGS
 
 set(DEFAULT_COMPILE_FLAGS
     ${LINUX_COMPILE_FLAGS}
-    $<$<CONFIG:Debug>:   
+    $<$<CONFIG:Debug>:
     >
-    $<$<CONFIG:Release>: 
+    $<$<CONFIG:Release>:
     >
 )
 
