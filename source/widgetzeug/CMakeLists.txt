@@ -4,10 +4,12 @@ message(STATUS "Lib ${target}")
 
 # External libraries
 
-find_package(Qt5Core    5.1 REQUIRED)
-find_package(Qt5Gui     5.1 REQUIRED)
-find_package(Qt5OpenGL  5.1 REQUIRED)
-find_package(Qt5Widgets 5.1 REQUIRED) # this is also important in order to get uic working
+find_package(Qt5 5.1 REQUIRED COMPONENTS
+    Qt5Core
+    Qt5Gui
+    Qt5Widgets  # this is also important in order to get uic working
+#    Qt5OpenGL
+)
 
 # Includes
 
