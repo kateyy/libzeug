@@ -42,6 +42,8 @@ set(LINUX_COMPILE_FLAGS
       -Wno-unused-variable
       -Wno-unused-but-set-variable
 
+      -Wno-error-inconsistent-missing-override
+
     # -Werror=return-type -> missing returns in functions and methods are handled as errors which stops the compilation
     # -Wshadow      # -> e.g. when a parameter is named like a member, too many warnings, disabled for now
 )
