@@ -48,6 +48,10 @@ set(LINUX_COMPILE_FLAGS
     # -Wshadow      # -> e.g. when a parameter is named like a member, too many warnings, disabled for now
 )
 
+if (NOT "${CMAKE_CXX_COMPILER_VERSION}" VERSION_LESS 5.0)
+    list(APPEND LINUX_COMPILE_FLAGS -Wno-error-unused-lambda-capture)
+endif()
+
 set(DEFAULT_COMPILE_FLAGS
     ${LINUX_COMPILE_FLAGS}
     $<$<CONFIG:Debug>:
